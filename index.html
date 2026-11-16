@@ -8,4 +8,25 @@
 <article class="card"><div class="tag">FILME &amp; SERIEN</div><h3>NebelFlix Hybrid</h3><p>Suche, Stream-Auswahl, Weiterschauen und interne Serienfortsetzung.</p><div class="meta"><span>v2026.11.15.1</span><a href="https://raw.githubusercontent.com/schlimmtendo/nebelkind.repo/main/packages/plugin.video.nebelflix.hybrid/plugin.video.nebelflix.hybrid-2026.11.15.1.zip">ZIP herunterladen</a></div></article>
 <article class="card"><div class="tag">LIVE-TV</div><h3>NebelFlix TV</h3><p>Sendergruppen, Programmführer und zuletzt gesehene Sender.</p><div class="meta"><span>v0.2.0</span><a href="https://raw.githubusercontent.com/schlimmtendo/nebelkind.repo/main/packages/plugin.video.nebelflix.tv/plugin.video.nebelflix.tv-0.2.0.zip">ZIP herunterladen</a></div></article>
 <article class="card"><div class="tag">MUSIK</div><h3>Nebelkind Musik</h3><p>Musikübersicht und die Kategorien deines eigenständigen Nebelkind-Musikaddons.</p><div class="meta"><span>v5.0.0</span><a href="https://raw.githubusercontent.com/schlimmtendo/nebelkind.repo/main/packages/plugin.video.nebelkindmusic/plugin.video.nebelkindmusic-5.0.0.zip">ZIP herunterladen</a></div></article>
-</div><div class="info"><strong>So installierst du die Repo:</strong> ZIP speichern → Kodi öffnen → Addons → Aus ZIP-Datei installieren → „Nebelkind Repo“ wählen → gewünschte Addons installieren.<p><strong>Test-Updates:</strong> Auch Teststände werden hier veröffentlicht. Bei unveränderter Versionsnummer musst du die ZIP auf bestehenden Geräten manuell installieren. Für automatische Kodi-Updates wird die Versionsnummer erhöht.</p><p>Bestimmte Addons benötigen zusätzliche Abhängigkeiten, die nicht Bestandteil dieser Repo sind (z. B. Vavoo TV Plus).</p></div></main><footer>Nebelkind Repo · Erstellt für das NebelFlix-Projekt · GitHub-hosted</footer></body></html>
+</div><div class="info"><strong>So installierst du die Repo:</strong> ZIP speichern → Kodi öffnen → Addons → Aus ZIP-Datei installieren → „Nebelkind Repo“ wählen → gewünschte Addons installieren.<p><strong>Test-Updates:</strong> Auch Teststände werden hier veröffentlicht. Bei unveränderter Versionsnummer musst du die ZIP auf bestehenden Geräten manuell installieren. Für automatische Kodi-Updates wird die Versionsnummer erhöht.</p><p>Bestimmte Addons benötigen zusätzliche Abhängigkeiten, die nicht Bestandteil dieser Repo sind (z. B. Vavoo TV Plus).</p></div></main><footer>Nebelkind Repo · Erstellt für das NebelFlix-Projekt · GitHub-hosted</footer><script>
+(() => {
+  // Show an addon download only after the ZIP is actually published.
+  for (const link of document.querySelectorAll('.card .meta a')) {
+    const original = link.href;
+    link.removeAttribute('href');
+    link.textContent = 'Download wird geprüft …';
+    link.setAttribute('aria-disabled', 'true');
+    link.style.opacity = '.6';
+    fetch(original, {method: 'HEAD', cache: 'no-store'}).then(response => {
+      if (!response.ok) throw new Error('ZIP not published');
+      link.href = original;
+      link.textContent = 'ZIP herunterladen';
+      link.removeAttribute('aria-disabled');
+      link.style.opacity = '1';
+    }).catch(() => {
+      link.textContent = 'ZIP noch nicht verfügbar';
+      link.style.opacity = '.6';
+    });
+  }
+})();
+</script></body></html>
