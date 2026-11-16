@@ -1,0 +1,37 @@
+name: Sync Nebelkind Kodi installer for file manager
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/sync_kodi_installer.py'
+      - '.github/workflows/sync-kodi-installer.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: nebelkind-pages-repository-zip
+  cancel-in-progress: false
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Mirror and verify ZIP from official Kodi repo
+        run: python tools/sync_kodi_installer.py
+      - name: Publish verified ZIP and retire old installer atomically
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A -- repository.nebelkind.zip
+          git add -A -- 'repository.nebelkind-'\*.zip || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Sync current Nebelkind repository installer for Kodi file manager'
+            git push origin HEAD:main
+          fi
