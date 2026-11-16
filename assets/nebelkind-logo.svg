@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+<title id="title">Nebelkind Repo</title><desc id="desc">Mystisches silberblaues N, Nebel und Neonlicht</desc>
+<defs>
+<radialGradient id="bg"><stop stop-color="#142a4d"/><stop offset=".65" stop-color="#071426"/><stop offset="1" stop-color="#020610"/></radialGradient>
+<linearGradient id="metal" x1=".2" x2=".9" y1="0" y2="1"><stop stop-color="#fff"/><stop offset=".33" stop-color="#92eafa"/><stop offset=".58" stop-color="#3092c9"/><stop offset="1" stop-color="#e0efff"/></linearGradient>
+<linearGradient id="aura" x1="0" x2="1"><stop stop-color="#7b4af0"/><stop offset=".5" stop-color="#19eaff"/><stop offset="1" stop-color="#207cc8"/></linearGradient>
+<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="16"/></filter>
+</defs>
+<rect width="1024" height="1024" fill="url(#bg)"/>
+<path d="M0 510Q155 330 308 455T615 450 1024 405V1024H0Z" fill="#102543" opacity=".65"/>
+<path d="M0 650Q145 525 264 604T540 584 777 600 1024 545V1024H0Z" fill="#0b1d33"/>
+<circle cx="512" cy="430" r="314" fill="none" stroke="url(#aura)" stroke-width="31" opacity=".68" filter="url(#glow)"/>
+<circle cx="512" cy="430" r="310" fill="none" stroke="url(#aura)" stroke-width="12" opacity=".95"/>
+<circle cx="512" cy="430" r="289" fill="none" stroke="#c7eafd" stroke-opacity=".38" stroke-width="3"/>
+<path d="M253 688V211h86l344 350V211h86v477h-85L339 341v347Z" fill="url(#metal)" stroke="#9beaff" stroke-width="2"/>
+<path d="M54 705Q260 584 512 695T981 696" fill="none" stroke="#4de9fa" stroke-width="70" opacity=".25" filter="url(#glow)"/>
+<path d="M0 744Q140 676 261 728T519 727 782 716 1024 732" fill="none" stroke="#88dcff" opacity=".25" stroke-width="33" filter="url(#glow)"/>
+<text x="512" y="840" text-anchor="middle" font-family="Arial,DejaVu Sans,sans-serif" font-weight="700" font-size="96" letter-spacing="8" fill="#d5edfd">NEBELKIND</text>
+<path d="M181 898h200m264 0h200" stroke="#3de4ff" stroke-width="4"/>
+<text x="512" y="914" text-anchor="middle" font-family="Arial,DejaVu Sans,sans-serif" font-size="42" letter-spacing="12" fill="#49dff7">REPO</text>
+</svg>
