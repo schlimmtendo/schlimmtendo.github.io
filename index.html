@@ -4,29 +4,56 @@
 </style></head><body><header><a class="brand" href="./"><img src="assets/nebelkind-logo.svg" alt="Nebelkind Logo">NEBELKIND <span style="color:#7be6ff">REPO</span></a><a class="github" href="https://github.com/schlimmtendo/nebelkind.repo" rel="noopener">GitHub-Projekt</a></header>
 <main><section class="hero"><div><div class="eyebrow">Official Kodi Repository</div><h1>Nebelkind<br>Repo.</h1><p>Dein direkter Zugang zum NebelFlix-Skin und den zugehörigen Addons. Eine Repo, ein Installer – alle Versionen direkt aus GitHub.</p><div class="actions"><a class="primary" href="https://raw.githubusercontent.com/schlimmtendo/nebelkind.repo/main/packages/repository.nebelkind/repository.nebelkind-1.0.0.zip" download>↓ Kodi Repo als ZIP herunterladen</a><a class="secondary" href="#addons">Addons ansehen</a></div><div class="hint">Repository-Installer v1.0.0 · ZIP-Datei · Kodi</div></div><img class="art" src="assets/nebelkind-logo.svg" alt="Nebelkind Repo: Eisblaues N im Nebel"></section>
 <div class="section-title" id="addons"><h2>Enthaltene Nebelkind-Addons</h2><span>4 Bestandteile · direkt aus GitHub</span></div><div class="cards">
-<article class="card"><div class="tag">OBERFLÄCHE</div><h3>NebelFlix Skin</h3><p>Dein Kino-Erlebnis mit Widgets, Filmen, Serien, Live-TV und eigener Navigation.</p><div class="meta"><span>v0.5.70</span><a href="https://raw.githubusercontent.com/schlimmtendo/nebelkind.repo/main/packages/skin.nebelflix/skin.nebelflix-0.5.70.zip">ZIP herunterladen</a></div></article>
-<article class="card"><div class="tag">FILME &amp; SERIEN</div><h3>NebelFlix Hybrid</h3><p>Suche, Stream-Auswahl, Weiterschauen und interne Serienfortsetzung.</p><div class="meta"><span>v2026.11.15.1</span><a href="https://raw.githubusercontent.com/schlimmtendo/nebelkind.repo/main/packages/plugin.video.nebelflix.hybrid/plugin.video.nebelflix.hybrid-2026.11.15.1.zip">ZIP herunterladen</a></div></article>
-<article class="card"><div class="tag">LIVE-TV</div><h3>NebelFlix TV</h3><p>Sendergruppen, Programmführer und zuletzt gesehene Sender.</p><div class="meta"><span>v0.2.0</span><a href="https://raw.githubusercontent.com/schlimmtendo/nebelkind.repo/main/packages/plugin.video.nebelflix.tv/plugin.video.nebelflix.tv-0.2.0.zip">ZIP herunterladen</a></div></article>
-<article class="card"><div class="tag">MUSIK</div><h3>Nebelkind Musik</h3><p>Musikübersicht und die Kategorien deines eigenständigen Nebelkind-Musikaddons.</p><div class="meta"><span>v5.0.0</span><a href="https://raw.githubusercontent.com/schlimmtendo/nebelkind.repo/main/packages/plugin.video.nebelkindmusic/plugin.video.nebelkindmusic-5.0.0.zip">ZIP herunterladen</a></div></article>
+<article class="card" data-addon-id="skin.nebelflix"><div class="tag">OBERFLÄCHE</div><h3>NebelFlix Skin</h3><p>Dein Kino-Erlebnis mit Widgets, Filmen, Serien, Live-TV und eigener Navigation.</p><div class="meta"><span>v0.5.70</span><a href="https://raw.githubusercontent.com/schlimmtendo/nebelkind.repo/main/packages/skin.nebelflix/skin.nebelflix-0.5.70.zip">ZIP herunterladen</a></div></article>
+<article class="card" data-addon-id="plugin.video.nebelflix.hybrid"><div class="tag">FILME &amp; SERIEN</div><h3>NebelFlix Hybrid</h3><p>Suche, Stream-Auswahl, Weiterschauen und interne Serienfortsetzung.</p><div class="meta"><span>v2026.11.15.1</span><a href="https://raw.githubusercontent.com/schlimmtendo/nebelkind.repo/main/packages/plugin.video.nebelflix.hybrid/plugin.video.nebelflix.hybrid-2026.11.15.1.zip">ZIP herunterladen</a></div></article>
+<article class="card" data-addon-id="plugin.video.nebelflix.tv"><div class="tag">LIVE-TV</div><h3>NebelFlix TV</h3><p>Sendergruppen, Programmführer und zuletzt gesehene Sender.</p><div class="meta"><span>v0.2.0</span><a href="https://raw.githubusercontent.com/schlimmtendo/nebelkind.repo/main/packages/plugin.video.nebelflix.tv/plugin.video.nebelflix.tv-0.2.0.zip">ZIP herunterladen</a></div></article>
+<article class="card" data-addon-id="plugin.video.nebelkindmusic"><div class="tag">MUSIK</div><h3>Nebelkind Musik</h3><p>Musikübersicht und die Kategorien deines eigenständigen Nebelkind-Musikaddons.</p><div class="meta"><span>v5.0.0</span><a href="https://raw.githubusercontent.com/schlimmtendo/nebelkind.repo/main/packages/plugin.video.nebelkindmusic/plugin.video.nebelkindmusic-5.0.0.zip">ZIP herunterladen</a></div></article>
 </div><div class="info"><strong>So installierst du die Repo:</strong> ZIP speichern → Kodi öffnen → Addons → Aus ZIP-Datei installieren → „Nebelkind Repo“ wählen → gewünschte Addons installieren.<p><strong>Test-Updates:</strong> Auch Teststände werden hier veröffentlicht. Bei unveränderter Versionsnummer musst du die ZIP auf bestehenden Geräten manuell installieren. Für automatische Kodi-Updates wird die Versionsnummer erhöht.</p><p>Bestimmte Addons benötigen zusätzliche Abhängigkeiten, die nicht Bestandteil dieser Repo sind (z. B. Vavoo TV Plus).</p></div></main><footer>Nebelkind Repo · Erstellt für das NebelFlix-Projekt · GitHub-hosted</footer><script>
-(() => {
-  // Show an addon download only after the ZIP is actually published.
-  for (const link of document.querySelectorAll('.card .meta a')) {
-    const original = link.href;
+(async () => {
+  const root = 'https://raw.githubusercontent.com/schlimmtendo/nebelkind.repo/main/packages/';
+  const cards = [...document.querySelectorAll('.card[data-addon-id]')];
+  const setStatus = (card, message, linkUrl = null) => {
+    const link = card.querySelector('.meta a');
     link.removeAttribute('href');
-    link.textContent = 'Download wird geprüft …';
+    link.removeAttribute('download');
     link.setAttribute('aria-disabled', 'true');
     link.style.opacity = '.6';
-    fetch(original, {method: 'HEAD', cache: 'no-store'}).then(response => {
-      if (!response.ok) throw new Error('ZIP not published');
-      link.href = original;
-      link.textContent = 'ZIP herunterladen';
+    link.textContent = message;
+    if (linkUrl) {
+      link.href = linkUrl;
       link.removeAttribute('aria-disabled');
       link.style.opacity = '1';
-    }).catch(() => {
-      link.textContent = 'ZIP noch nicht verfügbar';
-      link.style.opacity = '.6';
-    });
+      link.textContent = 'ZIP herunterladen';
+    }
+  };
+  cards.forEach(card => setStatus(card, 'Versionen werden geladen …'));
+  try {
+    const result = await fetch(root + 'release.json?t=' + Date.now(), {cache: 'no-store'});
+    if (!result.ok) throw new Error('release.json unavailable');
+    const data = await result.json();
+    if (!data || !Array.isArray(data.addons)) throw new Error('Invalid manifest');
+    const versions = new Map(data.addons.map(addon => [addon.id, addon.version]));
+    await Promise.all(cards.map(async card => {
+      const id = card.getAttribute('data-addon-id');
+      const version = versions.get(id);
+      const label = card.querySelector('.meta span');
+      if (!version || !/^[0-9][0-9A-Za-z.+_-]*$/.test(version)) {
+        label.textContent = 'Noch nicht veröffentlicht';
+        setStatus(card, 'ZIP noch nicht verfügbar');
+        return;
+      }
+      label.textContent = 'v' + version;
+      const url = root + id + '/' + id + '-' + version + '.zip';
+      try {
+        const exists = await fetch(url, {method: 'HEAD', cache: 'no-store'});
+        if (!exists.ok) throw new Error('Missing ZIP');
+        setStatus(card, '', url);
+      } catch (_) {
+        setStatus(card, 'Download derzeit nicht erreichbar');
+      }
+    }));
+  } catch (_) {
+    cards.forEach(card => setStatus(card, 'Versionsliste derzeit nicht erreichbar'));
   }
 })();
 </script></body></html>
